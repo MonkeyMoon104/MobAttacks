@@ -1,0 +1,132 @@
+name: MobAttacks
+version: ${project.version}
+main: com.monkey.mobattack.MobAttacks
+api-version: '1.21'
+authors: [ MonkeyMoon104 ]
+description: Plugin mob attack
+
+commands:
+  mobattack:
+    description: Comandi principali di MobAttack
+    usage: /mobattack reload
+    permission: mobattack.admin
+    aliases:
+      - mbreload
+
+  warden:
+    description: Scatena un attacco come il Warden
+    usage: /warden
+    permission: mobattack.warden
+    aliases:
+      - wd
+
+  creeper:
+    description: Esplodi come un creeper
+    permission: mobattack.creeper
+    aliases:
+      - crpr
+
+  ghast:
+    description: Spara una palla di fuoco come un ghast
+    permission: mobattack.ghast
+    aliases:
+      - gt
+      - ght
+
+  ravager:
+    description: Carica come un ravager
+    permission: mobattack.ravager
+    aliases:
+      - rr
+      - rgr
+      - rvgr
+
+  shulker:
+    description: Spara un proiettile levitante come uno shulker
+    permission: mobattack.shulker
+    aliases:
+      - sh
+      - sk
+      - slk
+      - shlk
+
+  blaze:
+    description: Spara 3 palle di fuoco come un blaze
+    permission: mobattack.blaze
+    aliases:
+      - bz
+      - blz
+
+  evoker:
+    description: Attacco in stile Evocatore
+    usage: /evoker
+    permission: mobattack.evoker
+    aliases:
+      - ek
+      - evk
+
+  wither:
+    description: Attacco con skull del Wither
+    usage: /wither
+    permission: mobattack.wither
+    aliases:
+      - wt
+      - wth
+
+  edragon:
+    description: Soffio acido del Drago Ender
+    usage: /edragon
+    permission: mobattack.edragon
+    aliases:
+      - enderdragon
+      - enderd
+      - ed
+
+  snowgolem:
+    description: Lancia una palla di neve come uno Snow Golem
+    usage: /snowgolem
+    permission: mobattack.snowgolem
+    aliases:
+      - sgolem
+      - snowg
+      - sg
+
+  enderman:
+    description: Teletrasporto dietro il nemico come un Enderman
+    usage: /enderman
+    permission: mobattack.enderman
+    aliases:
+      - eman
+      - em
+      - enderm
+
+permissions:
+  mobattack.warden:
+    default: op
+  mobattack.admin:
+    default: op
+  mobattack.creeper:
+    default: op
+  mobattack.ghast:
+    default: op
+  mobattack.ravager:
+    default: op
+  mobattack.shulker:
+    default: op
+  mobattack.blaze:
+    default: op
+  mobattack.evoker:
+    description: Permette di usare l'attacco Evoker
+    default: op
+  mobattack.wither:
+    description: Permette di usare l'attacco Wither
+    default: op
+  mobattack.edragon:
+    description: Permette di usare l'attacco Drago
+    default: op
+  mobattack.snowgolem:
+    description: Permette di usare l'attacco Snow Golem
+    default: op
+  mobattack.enderman:
+    description: Permette di usare l'attacco Enderman
+    default: op

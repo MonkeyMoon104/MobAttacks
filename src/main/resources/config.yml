@@ -1,0 +1,42 @@
+messages:
+  no-valid-target: "&cNo valid target in sight."
+  no-permission: "&cYou don't have permission to use this command!"
+  only-players: "&eOnly players can use this command."
+  cooldown: "&6You must wait &e%seconds% &6seconds before using this command again."
+  warden-used: "&aYou unleashed the Sonic Boom!"
+  creeper-used: "&aBOOM! Just like a Creeper."
+  ghast-used: "&aYou launched a fireball!"
+  ravager-used: "&aYou charged forward!"
+  blaze-used: "&aYou fired 3 fireballs!"
+  shulker-hit: "&aYou hit the entity with a Shulker projectile!"
+  evoker-used: "&aYou summoned the Evoker's fangs!"
+  wither-used: "&aYou launched a Wither skull!"
+  edragon-used: "&aYou used the Dragon's breath!"
+  snowgolem-used: "&bYou threw a snowball like a Snow Golem!"
+  enderman-used: "&dYou teleported behind the target!"
+
+cooldowns:
+  warden: 5
+  creeper: 10
+  ghast: 7
+  ravager: 6
+  shulker: 8
+  blaze: 5
+  evoker: 6
+  wither: 7
+  edragon: 10
+  snowgolem: 2
+  enderman: 5
+
+damage:
+  warden: 10.0
+  creeper: 20.0
+  ghast: 6.0
+  ravager: 8.0
+  shulker: 4.0
+  blaze: 5.0
+  evoker: 6.0
+  wither: 8.0
+  edragon: 6.0
+  snowgolem: 0.0
+  enderman: 6.0 #If PvP in your server is disabled attck will be invisible but remove health
