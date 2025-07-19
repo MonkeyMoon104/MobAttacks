@@ -1,5 +1,6 @@
 package com.monkey.mobattack.commands.mobs.enderman;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
@@ -7,7 +8,7 @@ import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class EndermanCommand implements CommandExecutor {
+public class EndermanCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -22,10 +23,11 @@ public class EndermanCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(msg("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.enderman")) {
             player.sendMessage(msg("no-permission"));
@@ -40,7 +42,8 @@ public class EndermanCommand implements CommandExecutor {
         }
 
         Entity target = player.getTargetEntity(10);
-        if (target instanceof LivingEntity living && !target.equals(player)) {
+        if (target instanceof LivingEntity && !target.equals(player)) {
+            LivingEntity living = (LivingEntity) target;
             Location targetLoc = target.getLocation();
             Vector backward = targetLoc.getDirection().normalize().multiply(-1);
             Location behind = targetLoc.add(backward);
@@ -52,7 +55,8 @@ public class EndermanCommand implements CommandExecutor {
 
             double damage = plugin.getConfig().getDouble("damage.enderman", 6.0);
 
-            if (living instanceof Player targetPlayer) {
+            if (living instanceof Player) {
+                Player targetPlayer = (Player) living;
                 if (!targetPlayer.isInvulnerable() && targetPlayer.getGameMode() == GameMode.SURVIVAL) {
                     targetPlayer.playEffect(EntityEffect.HURT);
                     targetPlayer.setHealth(Math.max(0, targetPlayer.getHealth() - damage));
@@ -68,5 +72,10 @@ public class EndermanCommand implements CommandExecutor {
         }
 
         return true;
+    }
+
+    @Override
+    public String getCommandName() {
+        return "enderman";
     }
 }

@@ -1,5 +1,6 @@
 package com.monkey.mobattack.commands.mobs.warden;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
@@ -7,7 +8,7 @@ import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class WardenCommand implements CommandExecutor {
+public class WardenCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -22,10 +23,11 @@ public class WardenCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(getMessage("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.warden")) {
             player.sendMessage(getMessage("no-permission"));
@@ -51,7 +53,8 @@ public class WardenCommand implements CommandExecutor {
             player.getWorld().spawnParticle(Particle.SONIC_BOOM, current, 1);
 
             for (Entity entity : current.getWorld().getNearbyEntities(current, 1.5, 1.5, 1.5)) {
-                if (entity instanceof LivingEntity target && !target.equals(player)) {
+                if (entity instanceof LivingEntity && !entity.equals(player)) {
+                    LivingEntity target = (LivingEntity) entity;
                     target.damage(damage, player);
                     target.setVelocity(direction.clone().multiply(0.5));
                     player.getWorld().playSound(target.getLocation(), Sound.ENTITY_WARDEN_SONIC_BOOM, 1f, 1f);
@@ -64,5 +67,10 @@ public class WardenCommand implements CommandExecutor {
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WARDEN_SONIC_BOOM, 1f, 1f);
         player.sendMessage(getMessage("warden-used"));
         return true;
+    }
+
+    @Override
+    public String getCommandName() {
+        return "warden";
     }
 }

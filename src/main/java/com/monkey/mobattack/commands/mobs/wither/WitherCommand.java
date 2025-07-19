@@ -1,12 +1,13 @@
 package com.monkey.mobattack.commands.mobs.wither;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class WitherCommand implements CommandExecutor {
+public class WitherCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -21,10 +22,11 @@ public class WitherCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(msg("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.wither")) {
             player.sendMessage(msg("no-permission"));
@@ -46,5 +48,10 @@ public class WitherCommand implements CommandExecutor {
         player.getWorld().playSound(player.getLocation(), Sound.ENTITY_WITHER_SHOOT, 1f, 1f);
         player.sendMessage(msg("wither-used"));
         return true;
+    }
+
+    @Override
+    public String getCommandName() {
+        return "wither";
     }
 }

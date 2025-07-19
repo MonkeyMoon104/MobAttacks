@@ -1,5 +1,6 @@
 package com.monkey.mobattack.commands.mobs.ravager;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
@@ -7,7 +8,7 @@ import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
-public class RavagerCommand implements CommandExecutor {
+public class RavagerCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -22,10 +23,11 @@ public class RavagerCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(getMessage("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.ravager")) {
             player.sendMessage(getMessage("no-permission"));
@@ -50,7 +52,8 @@ public class RavagerCommand implements CommandExecutor {
             double damage = plugin.getConfig().getDouble("damage.ravager", 8.0);
             Location loc = player.getLocation();
             for (Entity entity : player.getWorld().getNearbyEntities(loc, 5, 5, 5)) {
-                if (entity instanceof LivingEntity target && !target.equals(player)) {
+                if (entity instanceof LivingEntity && !entity.equals(player)) {
+                    LivingEntity target = (LivingEntity) entity;
                     target.damage(damage, player);
                     target.setVelocity(player.getLocation().getDirection().normalize().multiply(1.5));
                 }
@@ -58,5 +61,9 @@ public class RavagerCommand implements CommandExecutor {
         }, 10L);
 
         return true;
+    }
+    @Override
+    public String getCommandName() {
+        return "ravager";
     }
 }

@@ -1,5 +1,6 @@
 package com.monkey.mobattack.commands.mobs.evoker;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
@@ -11,7 +12,7 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EvokerCommand implements CommandExecutor {
+public class EvokerCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -26,10 +27,11 @@ public class EvokerCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(msg("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.evoker")) {
             player.sendMessage(msg("no-permission"));
@@ -45,10 +47,11 @@ public class EvokerCommand implements CommandExecutor {
         }
 
         Entity target = player.getTargetEntity(20);
-        if (!(target instanceof LivingEntity livingTarget) || target.equals(player)) {
+        if (!(target instanceof LivingEntity) || target.equals(player)) {
             player.sendMessage(msg("no-valid-target"));
             return true;
         }
+        LivingEntity livingTarget = (LivingEntity) target;
 
         List<Vex> vexes = new ArrayList<>();
         Location baseLoc = player.getLocation().add(player.getLocation().getDirection().multiply(2));
@@ -98,7 +101,8 @@ public class EvokerCommand implements CommandExecutor {
                 fangs.setOwner(player);
 
                 for (Entity entity : fangLoc.getWorld().getNearbyEntities(fangLoc, 1, 1, 1)) {
-                    if (entity instanceof LivingEntity hit && !hit.equals(player)) {
+                    if (entity instanceof LivingEntity && !entity.equals(player)) {
+                        LivingEntity hit = (LivingEntity) entity;
                         hit.damage(damage, player);
                     }
                 }
@@ -106,5 +110,9 @@ public class EvokerCommand implements CommandExecutor {
                 player.getWorld().playSound(fangLoc, Sound.ENTITY_EVOKER_CAST_SPELL, 1f, 1f);
             }, step * 5L);
         }
+    }
+    @Override
+    public String getCommandName() {
+        return "evoker";
     }
 }

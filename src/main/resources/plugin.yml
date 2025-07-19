@@ -1,40 +1,40 @@
 name: MobAttacks
 version: ${project.version}
 main: com.monkey.mobattack.MobAttacks
-api-version: '1.21'
+api-version: '1.13'
 authors: [ MonkeyMoon104 ]
-description: Plugin mob attack
+description: Mob attack plugin
 
 commands:
   mobattack:
-    description: Comandi principali di MobAttack
+    description: Main commands for MobAttack
     usage: /mobattack reload
     permission: mobattack.admin
     aliases:
       - mbreload
 
   warden:
-    description: Scatena un attacco come il Warden
+    description: Unleash an attack like the Warden
     usage: /warden
     permission: mobattack.warden
     aliases:
       - wd
 
   creeper:
-    description: Esplodi come un creeper
+    description: Explode like a Creeper
     permission: mobattack.creeper
     aliases:
       - crpr
 
   ghast:
-    description: Spara una palla di fuoco come un ghast
+    description: Shoot a fireball like a Ghast
     permission: mobattack.ghast
     aliases:
       - gt
       - ght
 
   ravager:
-    description: Carica come un ravager
+    description: Charge forward like a Ravager
     permission: mobattack.ravager
     aliases:
       - rr
@@ -42,7 +42,7 @@ commands:
       - rvgr
 
   shulker:
-    description: Spara un proiettile levitante come uno shulker
+    description: Shoot a levitating bullet like a Shulker
     permission: mobattack.shulker
     aliases:
       - sh
@@ -51,14 +51,14 @@ commands:
       - shlk
 
   blaze:
-    description: Spara 3 palle di fuoco come un blaze
+    description: Shoot 3 fireballs like a Blaze
     permission: mobattack.blaze
     aliases:
       - bz
       - blz
 
   evoker:
-    description: Attacco in stile Evocatore
+    description: Launch an Evoker-style fang attack
     usage: /evoker
     permission: mobattack.evoker
     aliases:
@@ -66,7 +66,7 @@ commands:
       - evk
 
   wither:
-    description: Attacco con skull del Wither
+    description: Shoot a Wither skull
     usage: /wither
     permission: mobattack.wither
     aliases:
@@ -74,7 +74,7 @@ commands:
       - wth
 
   edragon:
-    description: Soffio acido del Drago Ender
+    description: Shoot acid breath like the Ender Dragon
     usage: /edragon
     permission: mobattack.edragon
     aliases:
@@ -83,7 +83,7 @@ commands:
       - ed
 
   snowgolem:
-    description: Lancia una palla di neve come uno Snow Golem
+    description: Throw a snowball like a Snow Golem
     usage: /snowgolem
     permission: mobattack.snowgolem
     aliases:
@@ -92,13 +92,22 @@ commands:
       - sg
 
   enderman:
-    description: Teletrasporto dietro il nemico come un Enderman
+    description: Teleport behind the target like an Enderman
     usage: /enderman
     permission: mobattack.enderman
     aliases:
       - eman
       - em
       - enderm
+
+  firebreath:
+    description: Breathe fire in front of you!
+    usage: /firebreath
+    permission: mobattack.firebreath
+    aliases:
+      - fireb
+      - fb
+      - fbreath
 
 permissions:
   mobattack.warden:
@@ -116,17 +125,20 @@ permissions:
   mobattack.blaze:
     default: op
   mobattack.evoker:
-    description: Permette di usare l'attacco Evoker
+    description: Allows use of the Evoker attack
     default: op
   mobattack.wither:
-    description: Permette di usare l'attacco Wither
+    description: Allows use of the Wither attack
     default: op
   mobattack.edragon:
-    description: Permette di usare l'attacco Drago
+    description: Allows use of the Ender Dragon attack
     default: op
   mobattack.snowgolem:
-    description: Permette di usare l'attacco Snow Golem
+    description: Allows use of the Snow Golem attack
     default: op
   mobattack.enderman:
-    description: Permette di usare l'attacco Enderman
+    description: Allows use of the Enderman teleport attack
+    default: op
+  mobattack.firebreath:
+    description: Allows use of the Fire breath attack
     default: op

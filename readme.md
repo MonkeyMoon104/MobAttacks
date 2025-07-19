@@ -42,7 +42,7 @@ Whether you're planning intense PvP combat, minigames, or epic events, this plug
 
 ## ✨ Features
 
-- 🔥 **11 Unique Mob Attacks** — From Creeper explosions to Enderman teleportation.
+- 🔥 **12 Unique Mob/NoMobs Attacks** — From Creeper explosions to Enderman teleportation.
 - ⚙️ **Fully Configurable** — Customize cooldowns, damage, and messages.
 - 🔐 **Permission Based** — Assign specific attack powers to players or groups.
 - 🚀 **Lightweight & Fast** — Designed for performance, with instant config reload.
@@ -65,6 +65,7 @@ Whether you're planning intense PvP combat, minigames, or epic events, this plug
 /edragon                  # Dragon's breath attack
 /snowgolem                # Throw a snowball
 /enderman                 # Teleport behind enemy
+/firebreath               # Launch a fire breath
 ````
 
 Each command includes support for **cooldowns**, **damage settings**, and **permissions**.
@@ -88,6 +89,7 @@ cooldowns:
   edragon: 10
   snowgolem: 2
   enderman: 5
+  firebreath: 6
 ```
 
 ### 💥 Damage
@@ -105,6 +107,7 @@ damage:
   edragon: 6.0
   snowgolem: 0.0
   enderman: 6.0
+  firebreath: 5.0
 ```
 
 ### 💬 Messages
@@ -123,20 +126,21 @@ messages:
 
 ## 🧾 Permissions
 
-| Permission Node       | Description              | Default |
-| --------------------- | ------------------------ | ------- |
-| `mobattack.admin`     | Allows config reload     | OP      |
-| `mobattack.warden`    | Use Warden attack        | OP      |
-| `mobattack.creeper`   | Use Creeper explosion    | OP      |
-| `mobattack.ghast`     | Use Ghast fireball       | OP      |
-| `mobattack.ravager`   | Use Ravager charge       | OP      |
-| `mobattack.shulker`   | Use Shulker projectile   | OP      |
-| `mobattack.blaze`     | Use Blaze fireball burst | OP      |
-| `mobattack.evoker`    | Use Evoker fang attack   | OP      |
-| `mobattack.wither`    | Use Wither skull attack  | OP      |
-| `mobattack.edragon`   | Use Ender Dragon breath  | OP      |
-| `mobattack.snowgolem` | Use Snow Golem snowball  | OP      |
-| `mobattack.enderman`  | Use Enderman teleport    | OP      |
+| Permission Node        | Description             | Default |
+|------------------------|-------------------------| ------- |
+| `mobattack.admin`      | Allows config reload    | OP      |
+| `mobattack.warden`     | Use Warden attack       | OP      |
+| `mobattack.creeper`    | Use Creeper explosion   | OP      |
+| `mobattack.ghast`      | Use Ghast fireball      | OP      |
+| `mobattack.ravager`    | Use Ravager charge      | OP      |
+| `mobattack.shulker`    | Use Shulker projectile  | OP      |
+| `mobattack.blaze`      | Use Blaze fireball burst | OP      |
+| `mobattack.evoker`     | Use Evoker fang attack  | OP      |
+| `mobattack.wither`     | Use Wither skull attack | OP      |
+| `mobattack.edragon`    | Use Ender Dragon breath | OP      |
+| `mobattack.snowgolem`  | Use Snow Golem snowball | OP      |
+| `mobattack.enderman`   | Use Enderman teleport   | OP      |
+| `mobattack.firebreath` | Launch Firebreath       | OP      |
 
 ---
 

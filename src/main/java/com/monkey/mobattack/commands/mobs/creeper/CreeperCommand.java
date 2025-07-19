@@ -1,12 +1,13 @@
 package com.monkey.mobattack.commands.mobs.creeper;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class CreeperCommand implements CommandExecutor {
+public class CreeperCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
@@ -21,10 +22,11 @@ public class CreeperCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(getMessage("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.creeper")) {
             player.sendMessage(getMessage("no-permission"));
@@ -45,5 +47,10 @@ public class CreeperCommand implements CommandExecutor {
         player.getWorld().createExplosion(player.getLocation(), (float) damage / 5f, false, true);
         player.sendMessage(getMessage("creeper-used"));
         return true;
+    }
+
+    @Override
+    public String getCommandName() {
+        return "creeper";
     }
 }

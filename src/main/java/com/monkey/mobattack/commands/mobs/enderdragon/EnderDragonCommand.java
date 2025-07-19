@@ -1,16 +1,17 @@
-package com.monkey.mobattack.commands.mobs.edragon;
+package com.monkey.mobattack.commands.mobs.enderdragon;
 
+import com.monkey.mobattack.commands.manager.reflection.ReflectionMobCommand;
 import com.monkey.mobattack.utils.CooldownManager;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class EDragonCommand implements CommandExecutor {
+public class EnderDragonCommand extends ReflectionMobCommand {
     private final JavaPlugin plugin;
     private final CooldownManager cooldownManager;
 
-    public EDragonCommand(JavaPlugin plugin, CooldownManager cooldownManager) {
+    public EnderDragonCommand(JavaPlugin plugin, CooldownManager cooldownManager) {
         this.plugin = plugin;
         this.cooldownManager = cooldownManager;
     }
@@ -21,10 +22,11 @@ public class EDragonCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(msg("only-players"));
             return true;
         }
+        Player player = (Player) sender;
 
         if (!player.hasPermission("mobattack.edragon")) {
             player.sendMessage(msg("no-permission"));
@@ -44,12 +46,18 @@ public class EDragonCommand implements CommandExecutor {
         player.getWorld().playSound(loc, Sound.ENTITY_ENDER_DRAGON_GROWL, 2f, 1f);
 
         for (Entity e : player.getWorld().getNearbyEntities(loc, 3, 3, 3)) {
-            if (e instanceof LivingEntity target && !target.equals(player)) {
+            if (e instanceof LivingEntity && !e.equals(player)) {
+                LivingEntity target = (LivingEntity) e;
                 target.damage(damage, player);
             }
         }
 
         player.sendMessage(msg("edragon-used"));
         return true;
+    }
+
+    @Override
+    public String getCommandName() {
+        return "edragon";
     }
 }

@@ -14,6 +14,7 @@ messages:
   edragon-used: "&aYou used the Dragon's breath!"
   snowgolem-used: "&bYou threw a snowball like a Snow Golem!"
   enderman-used: "&dYou teleported behind the target!"
+  firebreath-used: "&cYou launched a fire breath!"
 
 cooldowns:
   warden: 5
@@ -27,6 +28,7 @@ cooldowns:
   edragon: 10
   snowgolem: 2
   enderman: 5
+  firebreath: 6
 
 damage:
   warden: 10.0
@@ -40,3 +42,4 @@ damage:
   edragon: 6.0
   snowgolem: 0.0
   enderman: 6.0 #If PvP in your server is disabled attck will be invisible but remove health
+  firebreath: 5.0
